@@ -127,7 +127,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn btn-primary flex items-center justify-center"
+              className="w-full py-3 px-6 bg-primary dark:bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-primary/90 dark:hover:bg-blue-700 transition-colors flex items-center justify-center disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
