@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import Loading from '../components/Loading';
+import usePersonalInfo from '../hooks/usePersonalInfo';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const Contact = () => {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
+  const { personalInfo } = usePersonalInfo();
 
   const handleChange = (e) => {
     setFormData({
@@ -142,22 +144,26 @@ const Contact = () => {
               Connect with me
             </h2>
             <div className="flex justify-center space-x-6">
-              <a
-                href="https://github.com/Huxvix"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com/in/umut-ergut"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors"
-              >
-                LinkedIn
-              </a>
+              {personalInfo?.github_url && (
+                <a
+                  href={personalInfo.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors"
+                >
+                  GitHub
+                </a>
+              )}
+              {personalInfo?.linkedin_url && (
+                <a
+                  href={personalInfo.linkedin_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors"
+                >
+                  LinkedIn
+                </a>
+              )}
             </div>
           </div>
         </div>
