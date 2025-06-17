@@ -21,11 +21,11 @@ const ProjectCard = ({ project }) => {
         <p className="text-gray-600 dark:text-gray-300 mb-4">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-4 dark:text-gray-300">
           {project.technologies.map((tech, i) => (
             <span
               key={i}
-              className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+              className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
             >
               {tech}
             </span>
@@ -42,9 +42,9 @@ const ProjectCard = ({ project }) => {
               GitHub
             </a>
           )}
-          {project.live_url && (
+          {project.url && (
             <a
-              href={project.live_url}
+              href={project.url}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors"
