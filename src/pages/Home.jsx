@@ -1,35 +1,24 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { motion } from 'framer-motion';
 import Loading from '../components/Loading';
-import * as FaIcons from 'react-icons/fa';
 import SkillCard from '../components/SkillCard';
+import usePersonalInfo from '../hooks/usePersonalInfo';
+import useSkills from '../hooks/useSkills';
 
-const BACKEND_URL = 'http://localhost:8000';
+// Reads the API base URL from Vite env variables; falls back to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const Home = () => {
-  const [personalInfo, setPersonalInfo] = useState(null);
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    personalInfo,
+    loading: loadingPersonalInfo,
+  } = usePersonalInfo();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [infoResponse, skillsResponse] = await Promise.all([
-          axios.get(`${BACKEND_URL}/api/personal-info/`),
-          axios.get(`${BACKEND_URL}/api/skills/`),
-        ]);
-        setPersonalInfo(infoResponse.data);
-        setSkills(skillsResponse.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const {
+    skills,
+    loading: loadingSkills,
+  } = useSkills();
 
-    fetchData();
-  }, []);
+  const loading = loadingPersonalInfo || loadingSkills;
 
   if (loading) {
     return <Loading />;
@@ -39,7 +28,7 @@ const Home = () => {
   const getMediaUrl = (url) => {
     if (!url) return '';
     if (url.startsWith('http')) return url;
-    return `${BACKEND_URL}${url}`;
+    return `${API_BASE_URL}${url}`;
   };
 
   return (
@@ -71,7 +60,7 @@ const Home = () => {
         </p>
         {personalInfo?.resume_file && (
           <a
-            href={getMediaUrl(personalInfo.resume_file)}
+            href={getMediaUrl(personalInfo.resume_url)}
             download
             className="inline-block mt-4 px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-colors"
           >
