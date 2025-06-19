@@ -32,6 +32,6 @@ import useProjects from '../hooks/useProjects';
         ))}
       </div>
     </div>
-};
+  );
 
 export default Projects; 
