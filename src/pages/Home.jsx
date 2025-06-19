@@ -58,7 +58,7 @@ const Home = () => {
         <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 mb-6">
           {personalInfo?.bio}
         </p>
-        {personalInfo?.resume_file && (
+        {personalInfo?.resume_url && (
           <a
             href={getMediaUrl(personalInfo.resume_url)}
             target="_blank"
