@@ -4,9 +4,13 @@ import { motion } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const Navbar = () => {
+  // Default to dark mode if no preference in localStorage
   const [isDark, setIsDark] = useState(() => {
     const stored = localStorage.getItem('theme');
-    return stored === 'dark' ? true : false;
+    if (stored === 'dark') return true;
+    if (stored === 'light') return false;
+    // No preference saved -> start in dark mode
+    return true;
   });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
