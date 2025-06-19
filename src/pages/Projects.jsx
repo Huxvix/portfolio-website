@@ -3,8 +3,7 @@ import Loading from '../components/Loading';
 import ProjectCard from '../components/ProjectCard';
 import useProjects from '../hooks/useProjects';
 
-const Projects = () => {
-  const { projects, loading } = useProjects();
+ const { projects, loading } = useProjects();
 
   if (loading) {
     return <Loading />;
