@@ -61,10 +61,11 @@ const Home = () => {
         {personalInfo?.resume_file && (
           <a
             href={getMediaUrl(personalInfo.resume_url)}
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block mt-4 px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-colors"
           >
-            Download my CV!
+            View my CV!
           </a>
         )}
       </motion.section>
