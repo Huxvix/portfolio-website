@@ -1,27 +1,10 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { motion } from 'framer-motion';
 import Loading from '../components/Loading';
 import ProjectCard from '../components/ProjectCard';
+import useProjects from '../hooks/useProjects';
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await axios.get('http://localhost:8000/api/projects/');
-        setProjects(response.data);
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
+  const { projects, loading } = useProjects();
 
   if (loading) {
     return <Loading />;
