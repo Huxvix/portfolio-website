@@ -3,7 +3,8 @@ import Loading from '../components/Loading';
 import ProjectCard from '../components/ProjectCard';
 import useProjects from '../hooks/useProjects';
 
- const { projects, loading } = useProjects();
+const Projects = () => {
+  const { projects, loading } = useProjects();
 
   if (loading) {
     return <Loading />;
@@ -33,5 +34,6 @@ import useProjects from '../hooks/useProjects';
       </div>
     </div>
   );
+};
 
 export default Projects; 
